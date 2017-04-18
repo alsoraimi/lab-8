@@ -13,8 +13,10 @@ namespace Lab_8
             do
             { 
             Console.WriteLine("Welcome to Batting Average Calculator!");
-            Console.Write("Enter number of times at bat: ");
+            Console.Write("Enter number of times at bat: "); 
             int[] TimesBatting = new int[GetValidInteger(1, 25)];
+            Console.WriteLine();
+            Console.WriteLine("0=out, 1=single, 2=double, 3=tripple, 4=home run");
             GetBattingResults(TimesBatting);
 
             if (!ContinueLoop())
@@ -63,10 +65,10 @@ namespace Lab_8
                 {
                     AtBatsNotZero++;
                 }
-                sum += BattingResults[i];
+                sum += BattingResults[i]; 
             }
-            double BattingAverage = (double)AtBatsNotZero / (double)BattingResults.Length;
-            double SluggingPercent = (double)sum / (double)BattingResults.Length;
+            double BattingAverage = Math.Round((double)AtBatsNotZero / (double)BattingResults.Length, 3);
+            double SluggingPercent =Math.Round((double)sum / (double)BattingResults.Length, 3);     //added math.round to round to 3rd decim place
             Console.WriteLine($"Batting Average: {BattingAverage}");
             Console.WriteLine($"Slugging Percentage: {SluggingPercent}");
         }
