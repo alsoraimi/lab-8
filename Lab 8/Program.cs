@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Lab_8
-{
+{/// <summary>
+/// Abrahim Alsoraimi
+/// Lab 8
+/// 04/20/2017
+/// </summary>
     class Program
     {
         static void Main(string[] args)
@@ -13,8 +18,10 @@ namespace Lab_8
             do
             { 
             Console.WriteLine("Welcome to Batting Average Calculator!");
-            Console.Write("Enter number of times at bat: "); 
-            int[] TimesBatting = new int[GetValidInteger(1, 25)];
+            Console.Write("Enter number of times at bat: ");
+                //int[] TimesBatting = new int[GetValidInteger(1, 25)];
+                int TimesBatting = GetValidInteger(1, 25);
+
             Console.WriteLine();
             Console.WriteLine("0=out, 1=single, 2=double, 3=tripple, 4=home run");
             GetBattingResults(TimesBatting);
@@ -52,23 +59,26 @@ namespace Lab_8
                 return IntegerInput;
             }
         }
-        public static void GetBattingResults(int[] TimesBatting)
+        public static void GetBattingResults(int TimesBatting)
         {
-            int[] BattingResults = new int[TimesBatting.Length];
+            //int[] BattingResults = new intTimesBatting.Length;
+            // ArrayList BattingResults = new ArrayList(TimesBatting);
+            List<int> BattingResults = new List<int>(TimesBatting);
+
             int AtBatsNotZero = 0;
             int sum = 0;
-            for (int i = 0; i < TimesBatting.Length; i++)
+            for (int i = 0; i < TimesBatting; i++)
             {
                 Console.Write($"Result for at-bat {i + 1}: ");
-                BattingResults[i] = GetValidInteger(0, 4);
+                BattingResults.Add( GetValidInteger(0, 4));
                 if (BattingResults[i] != 0)
                 {
                     AtBatsNotZero++;
                 }
                 sum += BattingResults[i]; 
             }
-            double BattingAverage = Math.Round((double)AtBatsNotZero / (double)BattingResults.Length, 3);
-            double SluggingPercent =Math.Round((double)sum / (double)BattingResults.Length, 3);     //added math.round to round to 3rd decim place
+            double BattingAverage = Math.Round((double)AtBatsNotZero / (double)BattingResults.Count, 3);
+            double SluggingPercent =Math.Round((double)sum / (double)BattingResults.Count, 3);     //added math.round to round to 3rd decim place
             Console.WriteLine($"Batting Average: {BattingAverage}");
             Console.WriteLine($"Slugging Percentage: {SluggingPercent}");
         }
